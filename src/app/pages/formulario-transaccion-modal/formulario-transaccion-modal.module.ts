@@ -14,7 +14,7 @@ import { FormularioTransaccionModalPage } from './formulario-transaccion-modal.p
     FormsModule,
     IonicModule,
     SharedModule,
-    FormularioTransaccionModalPageRoutingModule
+    FormularioTransaccionModalPageRoutingModule,
   ],
   declarations: [FormularioTransaccionModalPage]
 })

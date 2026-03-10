@@ -47,6 +47,9 @@ export class LoginPage implements OnInit {
       console.log('Formulario no válido');
     }
   }
+  irSignUp() {
+    this.router.navigate(['/registro']);
+  }
   get email() { return this.loginForm.get('email'); }
   get password() { return this.loginForm.get('password'); }
 

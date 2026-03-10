@@ -3,19 +3,20 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service'; // Verifica el nombre del archivo
 import { filter, map, take } from 'rxjs/operators';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = async (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.isAuthenticated$.pipe(
-    // Este filtro es vital: si es null, el Guard "se queda esperando"
-    filter(val => val !== null), 
-    take(1),
-    map(isAuth => {
-      if (isAuth) return true;
-      
-      router.navigate(['/login']);
-      return false;
-    })
-  );
+  // Convertimos el observable en una promesa para controlarlo mejor
+  const isAuthenticated = await authService.isAuthenticated$.pipe(
+    filter(val => val !== null),
+    take(1)
+  ).toPromise();
+
+  if (isAuthenticated) {
+    return true;
+  } else {
+    router.navigate(['/login']);
+    return false;
+  }
 };

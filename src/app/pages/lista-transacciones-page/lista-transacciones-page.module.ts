@@ -14,7 +14,8 @@ import { ListaTransaccionesPagePage } from './lista-transacciones-page.page';
     FormsModule,
     IonicModule,
     SharedModule,
-    ListaTransaccionesPagePageRoutingModule
+    ListaTransaccionesPagePageRoutingModule,
+
   ],
   declarations: [ListaTransaccionesPagePage]
 })

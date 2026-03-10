@@ -1,15 +1,22 @@
 <ion-item *ngIf="transaccion" button (click)="onClick()">
 
-  <ion-avatar slot="start">
+  <!-- <ion-avatar slot="start">
     <ion-icon [name]="transaccion.categoria | categoryIcon" [color]="transaccion.categoria | categoryColor"></ion-icon>
-  </ion-avatar>
+  </ion-avatar> -->
+  <app-category-icon slot="start"
+    [categoria]="transaccion.categoria" 
+    size="medium">
+  </app-category-icon>
 
   <ion-label>
 
     <h2>{{ transaccion.titulo }}</h2>
 
+    <app-category-badge [categoria]="transaccion.categoria" [mostrarIcono]="true">
+    </app-category-badge>
+
     <p>
-      {{ transaccion.categoria }}
+      <!-- {{ transaccion.categoria }} -->
       {{ (transaccion.fecha | date:'short') | dateFormat }}
     </p>
 

@@ -36,13 +36,9 @@
             <ion-col>
               <ion-item>
                 <ion-label>
-                  <p>Fecha</p>
-                  <app-date-field
-                     label="fecha"
-                     formControlName="fecha">
+                  <app-date-field label="Fecha" [value]="transactionForm.get('fecha')?.value"
+                    (onChange)="transactionForm.get('fecha')?.setValue($event)">
                   </app-date-field>
-                  
-          
                 </ion-label>
 
               </ion-item>
@@ -61,12 +57,10 @@
             </ion-col>
           </ion-row>
 
-          <app-photo-selector
-            [fotoActual]="foto"
-            (onFotoSeleccionada)="guardarFoto($event)"
+          <app-photo-selector [fotoActual]="foto" (onFotoSeleccionada)="guardarFoto($event)"
             (onFotoEliminada)="eliminarFoto()">
           </app-photo-selector>
-          
+
           <ion-button color="primary" type="submit" expand="block" fill="clear" shape="round"
             [disabled]="!transactionForm.valid">
             Save

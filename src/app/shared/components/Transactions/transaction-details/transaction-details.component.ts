@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
 import { Transaccion } from 'src/app/models/transaccion';
-import { PhotoGalleryModal } from '../../Photo/photo-gallery-modal/photo-gallery-modal.component';
+import { PhotoGalleryModalComponent } from '../../Photo/photo-gallery-modal/photo-gallery-modal.component';
+import { TransaccionService } from 'src/app/services/transaccion.service';
 
 @Component({
   selector: 'app-transaction-details',
@@ -14,19 +15,23 @@ export class TransactionDetailsComponent implements OnInit {
 
   @Input() transaccion!: Transaccion;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController,
+    private transaccionService: TransaccionService
+  ) { }
 
-  // Al cerrar el modal, pasamos el rol (para saber si se editó o eliminó)
+
+  // En transaction-details.component.ts
   async onEdit() {
     const modal = await this.modalCtrl.create({
       component: TransactionFormComponent,
-      componentProps: { transaccionAEditar: this.transaccion } // Pasamos la data al form
+      componentProps: { transaccionAEditar: this.transaccion }
     });
     await modal.present();
 
     const { data, role } = await modal.onWillDismiss();
-    if (role === 'confirm') {
-      this.modalCtrl.dismiss(data, 'editado'); // Avisamos que hubo cambios
+
+    if (role === 'confirm' && data) {
+      this.modalCtrl.dismiss(data, 'editado');
     }
   }
 
@@ -35,19 +40,19 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   onDelete() {
-    this.modalCtrl.dismiss(this.transaccion, 'delete'); // Avisamos que queremos borrar
+    this.modalCtrl.dismiss(this.transaccion, 'delete');
   }
 
   ngOnInit() { }
 
   async abrirGaleria(fotos: string[], index: number = 0) {
-  const modal = await this.modalCtrl.create({
-    component: PhotoGalleryModal,
-    componentProps: {
-      fotos: fotos,      // Array de URLs o Base64
-      fotoInicial: index // Índice de la foto que quieres mostrar primero
-    }
-  });
-  await modal.present();
-}
+    const modal = await this.modalCtrl.create({
+      component: PhotoGalleryModalComponent,
+      componentProps: {
+        fotos: fotos,
+        fotoInicial: index
+      }
+    });
+    await modal.present();
+  }
 }

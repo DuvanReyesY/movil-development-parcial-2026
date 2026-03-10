@@ -1,3 +1,10 @@
-<p>
-  category-badge works!
-</p>
+<ion-badge [color]="categoria | categoryColor">
+
+  <ion-icon
+    *ngIf="mostrarIcono"
+    [name]="categoria | categoryIcon">
+  </ion-icon>
+
+  {{ categoria }}
+
+</ion-badge>

@@ -33,7 +33,7 @@ export class StorageService {
     if (!this._storage) {
       await this.init();
     }
-    return await this._storage?.get('sesion_usuario'); 
+    return await this._storage?.get('sesion_usuario');
   }
   async limpiarUsuario() {
     await this.initStorageIfNeeded();
@@ -44,5 +44,18 @@ export class StorageService {
     if (!this._storage) {
       this._storage = await this.storage.create();
     }
+  }
+
+  async guardar(key: string, valor: any) {
+    await this._storage?.set(key, valor);
+  }
+
+  async obtener(key: string) {
+    return await this._storage?.get(key);
+  }
+
+  async limpiar(key: string) {
+    await this._initPromise;
+    await this._storage?.remove(key);
   }
 }

@@ -1,42 +1,28 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/authguard-guard';
-import { TabsComponent } from './shared/components/tabs/tabs.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'tabs',
-    component: TabsComponent,
-    canActivate: [authGuard],
-    children: [
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)
-      },
-      {
-        path: 'lista-transacciones',
-        loadChildren: () => import('./pages/lista-transacciones-page/lista-transacciones-page.module').then(m => m.ListaTransaccionesPagePageModule)
-      },
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      }
-    ]
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
   },
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: 'tabs', // <-- Esta es la raíz
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
+    canActivate: [authGuard]
+
   },
   {
-    path: '**',
-    redirectTo: 'login'
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
   }
+
 ];
 
 @NgModule({

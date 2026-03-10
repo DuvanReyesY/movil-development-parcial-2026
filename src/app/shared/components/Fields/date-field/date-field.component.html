@@ -1,14 +1,21 @@
 <ion-item>
-  <ion-datetime-button datetime="date-picker"></ion-datetime-button>
+  <ion-label>{{ label }}</ion-label>
+
+  <ion-datetime-button datetime="datePicker"></ion-datetime-button>
 
   <ion-modal [keepContentsMounted]="true">
     <ng-template>
-      <ion-datetime id="date-picker" presentation="date-time" [value]="value" formatOptions={{
-          
+
+      <ion-datetime
+        id="datePicker"
+        presentation="date-time"
+        [value]="value"
         (ionChange)="onChange.emit($event.detail.value)">
       </ion-datetime>
+
     </ng-template>
   </ion-modal>
+
 </ion-item>
 
 @if (error) {

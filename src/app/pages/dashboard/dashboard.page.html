@@ -3,39 +3,41 @@
     <ion-toolbar>
       <ion-title slot="start">✨MoneyWise✨</ion-title>
     </ion-toolbar>
-    <ion-searchbar placeholder="Filter Pizza" inputmode="decimal" type="decimal" [debounce]=""
-      showCancelButton="never"></ion-searchbar>
   </ion-header>
+
   <ion-grid>
     <ion-row>
-  <ion-col>
-    <app-dashboard-card-component 
-        type="Ingresos" 
-        [monto]="ingresos" 
-        icono="arrow-up-circle">
-    </app-dashboard-card-component>
+      <ion-col size="12">
 
-    <app-dashboard-card-component 
-        type="Gastos" 
-        [monto]="gastos" 
-        icono="arrow-down-circle">
-    </app-dashboard-card-component>
+        <app-dashboard-card-component type="Ingresos" icono="arrow-up-circle">
+          <app-amount-display [monto]="ingresos" tipo="ingreso" tamano="medium"></app-amount-display>
+        </app-dashboard-card-component>
 
-    <app-dashboard-card-component 
-        type="Balance" 
-        [monto]="balance" 
-        icono="wallet">
-    </app-dashboard-card-component>
-  </ion-col>
-</ion-row>
+        <app-dashboard-card-component type="Gastos" icono="arrow-down-circle">
+          <app-amount-display [monto]="gastos" tipo="gasto" tamano="medium"></app-amount-display>
+        </app-dashboard-card-component>
 
-    
-    <ion-fab>
-      <ion-fab-button class="fab-btn">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+        <app-dashboard-card-component type="Balance" icono="wallet">
+          <app-amount-display [monto]="balance" tipo="neutral" tamano="large"></app-amount-display>
+        </app-dashboard-card-component>
 
+        <ion-content>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Gastos por Categoría</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <div *ngFor="let item of categoriasResumen">
+                <app-progress-bar-category [categoria]="item.categoria" [monto]="item.total"
+                  [porcentaje]="item.porcentaje" color="danger">
+                </app-progress-bar-category>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-content>
+
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
 </ion-content>

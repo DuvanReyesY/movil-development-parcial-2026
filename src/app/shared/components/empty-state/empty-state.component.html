@@ -1,3 +1,10 @@
-<p>
-  empty-state works!
-</p>
+<div class="empty-state-container">
+  <ion-icon [name]="icono" color="medium"></ion-icon>
+  <ion-text color="medium">
+    <p>{{ mensaje }}</p>
+  </ion-text>
+  
+  <ion-button *ngIf="accion" fill="outline">
+    {{ accion }}
+  </ion-button>
+</div>

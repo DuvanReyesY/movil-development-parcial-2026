@@ -1,9 +1,24 @@
-<ion-content>
-  <swiper-container [initial-slide]="fotoInicial" slides-per-view="1">
-    <swiper-slide *ngFor="let foto of fotos">
-      <div class="slide-container">
-        <img [src]="foto" />
-      </div>
-    </swiper-slide>
-  </swiper-container>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Galería</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+
+  <div class="gallery">
+
+    <div class="slide" *ngFor="let foto of fotos">
+      <img [src]="foto">
+    </div>
+
+  </div>
+
 </ion-content>

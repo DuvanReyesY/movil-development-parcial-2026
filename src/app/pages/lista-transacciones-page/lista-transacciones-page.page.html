@@ -11,12 +11,15 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-  <app-transaction-item 
-    *ngFor="let t of transacciones | filterByType:tipoFiltro | filterByCategory:categoriaFiltro | searchByText:textoFiltro"
-    [transaccion]="t"
-    (click)="verDetalle(t)"> </app-transaction-item>
-</ion-list>
-  <ion-fab class="fab-btn" (click)="openModal()">
+    <app-transaction-item
+      *ngFor="let t of transacciones | filterByType:tipoFiltro | filterByCategory:categoriaFiltro | searchByText:textoFiltro"
+      [transaccion]="t" (click)="verDetalle(t)"> </app-transaction-item>
+  </ion-list>
+
+  <app-empty-state *ngIf="transacciones.length === 0" mensaje="Aún no has registrado ninguna transacción."
+    icono="wallet-outline">
+  </app-empty-state>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-btn" (click)="openModal()">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

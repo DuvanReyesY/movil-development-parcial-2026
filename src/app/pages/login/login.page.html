@@ -13,40 +13,32 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-input
-              label="Email" 
-              type="email"
-              placeholder="Anita@example.com" 
-              labelPlacement="floating"
-              formControlName="email">
-            </ion-input>
+              <ion-input label="Email" type="email" placeholder="Anita@example.com" labelPlacement="floating"
+                formControlName="email">
+              </ion-input>
 
-            @if (email?.invalid && (email?.dirty || email?.touched)){
+              @if (email?.invalid && (email?.dirty || email?.touched)){
               @if (email?.errors?.['required']){
-                <ion-text color="danger">El correo es obligatorio</ion-text>
+              <ion-text color="danger">El correo es obligatorio</ion-text>
               }
               @if (email?.errors?.['email']){
-                <ion-text color="danger">Formato de correo invalido</ion-text>
+              <ion-text color="danger">Formato de correo invalido</ion-text>
               }
-            }
+              }
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-input
-               label="Password"
-               type="password"
-               labelPlacement="floating"
-               placeholder="*******"
-               formControlName="password">
+              <ion-input label="Password" type="password" labelPlacement="floating" placeholder="*******"
+                formControlName="password">
               </ion-input>
             </ion-col>
           </ion-row>
 
-          <ion-button expand="block" type="submit" >
+          <ion-button expand="block" type="submit">
             Sign Up
           </ion-button>
-          <ion-button expand="block" type="submit" >
+          <ion-button routerLink="/registro" expand="block" fill="outline" type="button">
             Register Now
           </ion-button>
         </ion-grid>

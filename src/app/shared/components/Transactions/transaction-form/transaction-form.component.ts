@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Transaccion } from 'src/app/models/transaccion';
+import { ModalController } from '@ionic/angular';
+import { TransaccionService } from 'src/app/services/transaccion.service';
 
 @Component({
   selector: 'app-transaction-form',
@@ -19,7 +21,11 @@ export class TransactionFormComponent implements OnInit {
   @Output() onSave = new EventEmitter<any>();
   @Output() onCancel = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private modalCtrl: ModalController,
+    private transaccionService: TransaccionService
+  ) { }
 
   guardarFoto(foto: string) {
     this.foto = foto;
@@ -46,6 +52,12 @@ export class TransactionFormComponent implements OnInit {
 
     })
 
+
+    if (this.transaccionAEditar) {
+      this.transactionForm.patchValue(this.transaccionAEditar);
+      this.foto = this.transaccionAEditar.comprobante || null;
+    }
+
     if (this.transaccionAEditar) {
       this.transactionForm.patchValue(this.transaccionAEditar);
     }
@@ -53,12 +65,15 @@ export class TransactionFormComponent implements OnInit {
 
   save() {
     if (this.transactionForm.valid) {
-      const nuevaTransaccion = {
-        ...this.transactionForm.value,
-        id: Date.now().toString(),
-        titulo: this.transactionForm.value.categoria
+      const formValue = this.transactionForm.value;
+
+      const transaccionFinal = {
+        ...formValue,
+        id: this.transaccionAEditar?.id || Date.now().toString(),
+        titulo: formValue.categoria
       };
-      this.onSave.emit(this.transactionForm.value);
+
+      this.modalCtrl.dismiss(transaccionFinal, 'confirm');
     }
   }
 

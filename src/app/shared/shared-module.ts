@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { DashboardCardComponentComponent } from './components/dashboard-card-component/dashboard-card-component.component';
-import { TabsComponent } from './components/tabs/tabs.component';
 import { TransactionDetailsComponent } from './components/Transactions/transaction-details/transaction-details.component';
 import { TransactionFormComponent } from './components/Transactions/transaction-form/transaction-form.component';
 import { TransactionItemComponent } from './components/Transactions/transaction-item/transaction-item.component';
@@ -17,15 +16,20 @@ import { FilterBarComponent } from './components/filter-bar-component/filter-bar
 import { SearchByTextPipe } from './Pipes/search-by-text-pipe';
 import { FilterByCategoryPipe } from './Pipes/filter-by-category-pipe';
 import { FilterByTypePipe } from './Pipes/filter-by-type-pipe';
-import { PhotoGalleryModal } from './components/Photo/photo-gallery-modal/photo-gallery-modal.component';
 import { PhotoPreviewComponent } from './components/Photo/photo-preview/photo-preview.component';
+import { AmountDisplayComponent } from './components/amount-display/amount-display.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component';
+import { CategoryBadgeComponent } from './components/Categories/category-badge/category-badge.component';
+import { CategoryIconComponent } from './components/Categories/category-icon/category-icon.component';
+import { ProgressBarCategoryComponent } from './components/progress-bar-category/progress-bar-category.component';
+import { PhotoGalleryModalComponent } from './components/Photo/photo-gallery-modal/photo-gallery-modal.component';
 
 
 @NgModule({
-  declarations: [DashboardCardComponentComponent, TabsComponent, TransactionDetailsComponent, TransactionItemComponent, TransactionFormComponent, CurrencyFormatPipe,
-    DateFormatPipe, CategoryColorPipe, CategoryIconPipe, DateFieldComponent, PhotoSelectorComponent, FilterBarComponent, SearchByTextPipe,PhotoPreviewComponent,PhotoGalleryModal,
-    FilterByCategoryPipe,
-    FilterByTypePipe,TabsComponent
+  declarations: [DashboardCardComponentComponent,TransactionDetailsComponent, TransactionItemComponent, TransactionFormComponent, CurrencyFormatPipe,
+    DateFormatPipe, CategoryColorPipe, CategoryIconPipe, DateFieldComponent, PhotoSelectorComponent, FilterBarComponent, SearchByTextPipe,PhotoPreviewComponent,
+    FilterByCategoryPipe,FilterByTypePipe,AmountDisplayComponent,EmptyStateComponent,CategoryBadgeComponent,CategoryIconComponent,ProgressBarCategoryComponent,
+    PhotoGalleryModalComponent
 
   ],
   imports: [
@@ -36,7 +40,6 @@ import { PhotoPreviewComponent } from './components/Photo/photo-preview/photo-pr
   ],
   exports: [
     DashboardCardComponentComponent,
-    TabsComponent,
     DateFieldComponent,
     TransactionFormComponent,
     TransactionItemComponent,
@@ -49,11 +52,16 @@ import { PhotoPreviewComponent } from './components/Photo/photo-preview/photo-pr
     SearchByTextPipe,
     FilterByCategoryPipe,
     FilterByTypePipe,
-    PhotoGalleryModal,
     PhotoPreviewComponent,
-    TabsComponent
+    AmountDisplayComponent,
+    EmptyStateComponent,
+    CategoryBadgeComponent,
+    CategoryIconComponent,
+    ProgressBarCategoryComponent,
+    PhotoGalleryModalComponent,
 
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
+  
 })
 export class SharedModule { }

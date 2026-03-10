@@ -63,8 +63,15 @@ export class ListaTransaccionesPagePage implements OnInit {
     this.modalCtrl.dismiss(datosTransaccion, 'confirm');
   }
 
+  cerrar(){
+    this.modalCtrl.dismiss();
+  }
+
   async ngOnInit() {
     this.transacciones = await this.storageService.obtenerTransacciones();
   }
+
+  
+
 
 }

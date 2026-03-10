@@ -1,15 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-// category-badge.component.ts
 @Component({
-  selector: 'app-category-badge', template: `
-  <ion-badge [color]="categoria | categoryColor">
-    <ion-icon *ngIf="mostrarIcono" [name]="categoria | categoryIcon"></ion-icon>
-    {{ categoria }}
-  </ion-badge>
-`})
+  selector: 'app-category-badge',
+  templateUrl: './category-badge.component.html',
+  styleUrls: ['./category-badge.component.scss'],
+  standalone: false
+})
 export class CategoryBadgeComponent {
-  
+
   @Input() categoria: string = '';
   @Input() mostrarIcono: boolean = true;
 

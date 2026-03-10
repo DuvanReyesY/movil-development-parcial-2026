@@ -1,36 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { TransaccionService } from 'src/app/services/transaccion.service';
-import { AnalyticsService } from 'src/app/services/analytics.service';
-import { Transaccion } from 'src/app/models/transaccion';
+import { Component, Input } from "@angular/core";
+import { TransaccionService } from "src/app/services/transaccion.service";
 
-@Component({ 
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
-  standalone: false
- })
-export class DashboardPage implements OnInit {
-  transacciones: Transaccion[] = [];
-  
-  // Variables para los montos
-  ingresos = 0;
-  gastos = 0;
-  balance = 0;
+// dashboard-card.component.ts
+@Component({
+  selector: 'app-dashboard-card',
+  template: `
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div [style.color]="getColor()">
+          <h3>{{ monto | currency:'COP':'symbol':'1.0-0' }}</h3>
+        </div>
+        <ion-icon [name]="icono"></ion-icon>
+      </ion-card-content>
+    </ion-card>
+  `
+})
+export class DashboardCardComponent implements ngOnInit{
+  @Input() titulo!: string;
+  @Input() monto!: number;
+  @Input() tipo!: 'ingreso' | 'gasto' | 'saldo';
+  @Input() icono!: string;
 
-  constructor(
-    private transaccionService: TransaccionService,
-    private analyticsService: AnalyticsService
-  ) {}
 
-  async ngOnInit() {
-    this.transacciones = await this.transaccionService.obtenerTodas();
-    this.calcularTotales();
+
+  getColor() {
+    if (this.tipo === 'ingreso') return 'var(--ion-color-success)'; // Verde
+    if (this.tipo === 'gasto') return 'var(--ion-color-danger)';   // Rojo
+    return 'var(--ion-color-warning)';                            // Amarillo
   }
-  
 
-  calcularTotales() {
-    this.ingresos = this.analyticsService.calcularTotal(this.transacciones, 'Ingreso');
-    this.gastos = this.analyticsService.calcularTotal(this.transacciones, 'Gasto');
-    this.balance = this.analyticsService.getBalance(this.transacciones);
+  ngOnInit() {
+    this.transaccionService.transacciones$.subscribe(transacciones => {
+      this.ingresos = this.analyticsService.calcularTotal(transacciones, 'Ingreso');
+      this.gastos = this.analyticsService.calcularTotal(transacciones, 'Gasto');
+      this.balance = this.ingresos - this.gastos;
+
+      // Asumiendo que tu AnalyticsService devuelve { categoria, total, porcentaje, color }
+      this.categoriasResumen = this.analyticsService.getResumenCategorias(transacciones);
+    });
   }
 }

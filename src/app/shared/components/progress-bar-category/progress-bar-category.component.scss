@@ -1,0 +1,14 @@
+.progress-container {
+  margin: 16px 0;
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  ion-progress-bar {
+    height: 8px;
+    border-radius: 4px;
+  }
+}
