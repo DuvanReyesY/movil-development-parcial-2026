@@ -1,0 +1,35 @@
+<ion-item *ngIf="transaccion" button (click)="onClick()">
+
+  <ion-avatar slot="start">
+    <ion-icon [name]="transaccion.categoria | categoryIcon" [color]="transaccion.categoria | categoryColor"></ion-icon>
+  </ion-avatar>
+
+  <ion-label>
+
+    <h2>{{ transaccion.titulo }}</h2>
+
+    <p>
+      {{ transaccion.categoria }}
+      {{ (transaccion.fecha | date:'short') | dateFormat }}
+    </p>
+
+  </ion-label>
+
+
+  <ion-badge slot="end" [color]="transaccion.tipo === 'Ingreso' ? 'success' : 'danger'">
+
+    {{ transaccion.monto | currencyFormat }}
+
+  </ion-badge>
+
+  <h1>{{transaccion.descripcion}} </h1>
+
+
+
+  <ion-thumbnail *ngIf="transaccion.comprobante" slot="end">
+
+    <img [src]="transaccion.comprobante">
+
+  </ion-thumbnail>
+
+</ion-item>

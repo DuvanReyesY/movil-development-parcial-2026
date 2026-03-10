@@ -1,0 +1,56 @@
+<ion-content static>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title color="success">✨MoneyWise✨</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input
+              label="Email" 
+              type="email"
+              placeholder="Anita@example.com" 
+              labelPlacement="floating"
+              formControlName="email">
+            </ion-input>
+
+            @if (email?.invalid && (email?.dirty || email?.touched)){
+              @if (email?.errors?.['required']){
+                <ion-text color="danger">El correo es obligatorio</ion-text>
+              }
+              @if (email?.errors?.['email']){
+                <ion-text color="danger">Formato de correo invalido</ion-text>
+              }
+            }
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input
+               label="Password"
+               type="password"
+               labelPlacement="floating"
+               placeholder="*******"
+               formControlName="password">
+              </ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-button expand="block" type="submit" >
+            Sign Up
+          </ion-button>
+          <ion-button expand="block" type="submit" >
+            Register Now
+          </ion-button>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

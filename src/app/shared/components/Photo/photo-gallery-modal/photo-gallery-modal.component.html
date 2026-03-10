@@ -1,0 +1,9 @@
+<ion-content>
+  <swiper-container [initial-slide]="fotoInicial" slides-per-view="1">
+    <swiper-slide *ngFor="let foto of fotos">
+      <div class="slide-container">
+        <img [src]="foto" />
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

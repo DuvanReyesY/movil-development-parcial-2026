@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Detalles</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon slot="start" name="close-circle-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ transaccion.monto | currencyFormat }}</ion-card-title>
+      <ion-card-subtitle>{{ transaccion.categoria }} - {{ transaccion.tipo }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label position="stacked">Fecha</ion-label>
+          <ion-text>{{ transaccion.fecha | dateFormat }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Descripción</ion-label>
+          <ion-text>{{ transaccion.descripcion || 'Sin descripción' }}</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <div *ngIf="transaccion.comprobante" class="photo-section">
+    <ion-label color="medium">Comprobante:</ion-label>
+    <app-photo-preview [src]="transaccion.comprobante" size="large" (onClick)="abrirGaleria([transaccion.comprobante])" class="comprobante-img" alt="Comprobante">
+    </app-photo-preview>
+  </div>
+
+  <ion-button (click)="onEdit()" expand="block" color="primary" class="ion-margin">
+    Editar
+  </ion-button>
+  <ion-button (click)="onDelete()" expand="block" color="danger" class="ion-margin">
+    Borrar
+  </ion-button>
+</ion-content>

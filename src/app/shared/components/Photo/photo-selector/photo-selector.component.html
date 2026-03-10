@@ -1,0 +1,25 @@
+ <div class="photo-container">
+
+  <div class="photo-preview" *ngIf="fotoActual">
+    <img [src]="fotoActual">
+  </div>
+
+  <div class="photo-placeholder" *ngIf="fotoActual">
+    <ion-icon name="camera"></ion-icon>
+  </div>
+
+  <ion-button (click)="tomarFoto()" expand="block">
+    <ion-icon slot="start" name="camera"></ion-icon>
+    Tomar Foto
+  </ion-button>
+
+  <ion-button (click)="seleccionarDeGaleria()" expand="block" fill="outline">
+    <ion-icon slot="start" name="images"></ion-icon>
+    Seleccionar de Galeria
+  </ion-button>
+
+  <ion-button (click)="eliminarFoto()" *ngIf="fotoActual" expand="block" color="danger" fill="clear">
+    <ion-icon slot="start" name="trash"></ion-icon>
+    Eliminar Foto
+  </ion-button>
+ </div>

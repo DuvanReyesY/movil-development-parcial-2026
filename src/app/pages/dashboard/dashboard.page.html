@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title slot="start">✨MoneyWise✨</ion-title>
+    </ion-toolbar>
+    <ion-searchbar placeholder="Filter Pizza" inputmode="decimal" type="decimal" [debounce]=""
+      showCancelButton="never"></ion-searchbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+  <ion-col>
+    <app-dashboard-card-component 
+        type="Ingresos" 
+        [monto]="ingresos" 
+        icono="arrow-up-circle">
+    </app-dashboard-card-component>
+
+    <app-dashboard-card-component 
+        type="Gastos" 
+        [monto]="gastos" 
+        icono="arrow-down-circle">
+    </app-dashboard-card-component>
+
+    <app-dashboard-card-component 
+        type="Balance" 
+        [monto]="balance" 
+        icono="wallet">
+    </app-dashboard-card-component>
+  </ion-col>
+</ion-row>
+
+    
+    <ion-fab>
+      <ion-fab-button class="fab-btn">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  </ion-grid>
+
+</ion-content>
