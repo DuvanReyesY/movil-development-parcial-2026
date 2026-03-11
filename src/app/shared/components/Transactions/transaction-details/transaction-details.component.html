@@ -1,0 +1,99 @@
+<!-- transaction-details.component.html -->
+<ion-header>
+  <ion-toolbar [color]="getColorPorTipo()">
+    <ion-title>Detalles de Transacción</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <!-- Tarjeta principal -->
+  <ion-card class="details-card">
+    <ion-card-header>
+      <div class="header-icon">
+        
+      </div>
+      <ion-card-title>
+        {{ transaccion.monto | currencyFormat }}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{ transaccion.categoria }}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-icon name="calendar-outline" slot="start" color="medium"></ion-icon>
+          <ion-label>
+            <h3>Fecha</h3>
+            <p>{{ transaccion.fecha | dateFormat }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="time-outline" slot="start" color="medium"></ion-icon>
+          <ion-label>
+            <h3>Hora</h3>
+            <p>{{ transaccion.fecha | date:'h:mm a' }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="pricetag-outline" slot="start" color="medium"></ion-icon>
+          <ion-label>
+            <h3>Tipo</h3>
+            <ion-badge [color]="getColorPorTipo()">
+              {{ transaccion.tipo }}
+            </ion-badge>
+          </ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="transaccion.descripcion">
+          <ion-icon name="document-text-outline" slot="start" color="medium"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h3>Descripción</h3>
+            <p>{{ transaccion.descripcion }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <div *ngIf="transaccion.comprobante" class="comprobante-section">
+        <ion-label color="medium">
+          <ion-icon name="image-outline"></ion-icon>
+          Comprobante
+        </ion-label>
+        <ion-card class="comprobante-card" (click)="abrirGaleria([transaccion.comprobante])">
+          <img [src]="transaccion.comprobante" alt="Comprobante">
+          <div class="comprobante-overlay">
+            <ion-icon name="expand-outline"></ion-icon>
+            <span>Ver completo</span>
+          </div>
+        </ion-card>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid class="action-buttons">
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" fill="outline" (click)="onEdit()" color="primary">
+          <ion-icon name="create-outline" slot="start"></ion-icon>
+          Editar
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" fill="outline" (click)="confirmarEliminar()" color="danger">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Eliminar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

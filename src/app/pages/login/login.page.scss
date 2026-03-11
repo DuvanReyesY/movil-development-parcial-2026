@@ -1,0 +1,255 @@
+// login.page.scss
+.login-content {
+  --background: transparent;
+  position: relative;
+  
+  // Imagen de fondo
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/finance-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    
+    @media (min-width: 768px) {
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  }
+  
+  // Overlay claro para el contenido (excepto el título)
+  .overlay-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9); // Fondo blanco para el contenido
+    z-index: 1;
+  }
+  
+  // Contenedor principal
+  .login-container {
+    position: relative;
+    z-index: 2;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    
+    // Logo y título - SOLO ESTO EN BLANCO
+    .logo-container {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 3; // Por encima del overlay
+      
+      .app-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #FFFFFF; // BLANCO
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5); // Sombra para que resalte
+        margin-bottom: 10px;
+        
+        @media (min-width: 768px) {
+          font-size: 3.5rem;
+        }
+      }
+      
+      .app-subtitle {
+        color: rgba(255,255,255,0.9); // Blanco semitransparente
+        font-size: 1rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        
+        @media (min-width: 768px) {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    
+    // Tarjeta de login - Todo en negro
+    .login-card {
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      background: #FFFFFF; // Fondo blanco sólido
+      margin: 0 auto;
+      width: 100%;
+      max-width: 400px;
+      
+      ion-card-header {
+        text-align: center;
+        padding-bottom: 0;
+        
+        ion-card-title {
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: #000000; // NEGRO
+        }
+        
+        ion-card-subtitle {
+          color: #444444; // Gris oscuro
+          margin-top: 5px;
+        }
+      }
+      
+      ion-card-content {
+        padding: 20px;
+      }
+      
+      // Items del formulario
+      .form-item {
+        --background: transparent;
+        --padding-start: 0;
+        --inner-padding-end: 0;
+        margin-bottom: 5px;
+        --color: #000000; // Texto negro
+        
+        ion-icon {
+          color: var(--ion-color-primary);
+          font-size: 20px;
+          margin-right: 10px;
+        }
+        
+        ion-input {
+          --padding-top: 12px;
+          --padding-bottom: 12px;
+          --color: #000000; // Texto negro en inputs
+          color: #000000;
+          
+          input {
+            color: #000000 !important;
+          }
+        }
+        
+        ion-label {
+          color: #333333 !important; // Labels en gris oscuro
+        }
+      }
+      
+      // Contenedores de error
+      .error-container {
+        margin: 5px 0 15px 30px;
+        
+        .error-text {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 12px;
+          color: #000000; // Texto negro
+          
+          ion-icon {
+            font-size: 14px;
+          }
+        }
+      }
+      
+      // Error de login
+      .login-error-container {
+        margin: 15px 0;
+        padding: 10px;
+        background: rgba(var(--ion-color-danger-rgb), 0.1);
+        border-radius: 8px;
+        text-align: center;
+        
+        .error-text {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          color: #000000; // Texto negro
+        }
+      }
+      
+      // Botón de login
+      .login-button {
+        margin-top: 20px;
+        --border-radius: 12px;
+        height: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        --color: #ffffff; // Texto blanco en el botón (contrasta con el fondo azul)
+        
+        ion-spinner {
+          margin-right: 10px;
+        }
+      }
+      
+      // Botón de registro
+      .register-button {
+        margin-top: 10px;
+        --color: #000000; // Texto negro
+        
+        &:hover {
+          --color: #333333;
+        }
+      }
+    }
+    
+    // Footer con texto gris oscuro
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      
+      .footer-text {
+        color: #333333 !important; // Gris oscuro
+        font-size: 12px;
+        
+        small {
+          color: #333333;
+        }
+      }
+    }
+  }
+}
+
+// Forzar texto negro en inputs de Ionic
+ion-input {
+  --color: #000000 !important;
+  color: #000000 !important;
+  
+  input {
+    color: #000000 !important;
+  }
+}
+
+ion-label {
+  color: #333333 !important;
+}
+
+// Ajustes responsive
+@media (max-width: 320px) {
+  .login-container {
+    padding: 10px;
+    
+    .app-title {
+      font-size: 2rem;
+    }
+    
+    .login-card {
+      ion-card-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .login-container {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .login-container {
+    .login-card {
+      max-width: 450px;
+    }
+  }
+}

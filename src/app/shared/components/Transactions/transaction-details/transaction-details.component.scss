@@ -1,0 +1,25 @@
+.action-sheet-eliminar {
+  --background: var(--ion-background-color);
+  
+  .action-sheet-group {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .action-sheet-button {
+    font-size: 16px;
+    
+    &.destructive {
+      color: var(--ion-color-danger);
+      font-weight: 600;
+    }
+    
+    ion-icon {
+      margin-right: 12px;
+    }
+  }
+  
+  .action-sheet-cancel {
+    font-weight: 500;
+  }
+}

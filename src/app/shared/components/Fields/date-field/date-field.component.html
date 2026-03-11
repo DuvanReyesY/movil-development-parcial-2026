@@ -1,0 +1,23 @@
+<ion-item>
+  <ion-label>{{ label }}</ion-label>
+
+  <ion-datetime-button datetime="datePicker"></ion-datetime-button>
+
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+
+      <ion-datetime
+        id="datePicker"
+        presentation="date-time"
+        [value]="value"
+        (ionChange)="onChange.emit($event.detail.value)">
+      </ion-datetime>
+
+    </ng-template>
+  </ion-modal>
+
+</ion-item>
+
+@if (error) {
+<ion-note color="danger" class="ion-padding-start">{{ error }}</ion-note>
+}

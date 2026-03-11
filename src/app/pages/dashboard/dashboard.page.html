@@ -1,0 +1,76 @@
+<!-- dashboard.page.html -->
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <h1 class="section-title">✨ MoneyWise ✨</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <!-- Tarjetas de resumen -->
+  <div class="cards-container">
+    <div class="dashboard-cont">
+      <app-dashboard-card 
+        titulo="Ingresos del mes" 
+        [monto]="ingresos" 
+        tipo="ingreso" 
+        icono="trending-up-outline">
+      </app-dashboard-card>
+    </div>
+
+    <div class="dashboard-cont">
+      <app-dashboard-card 
+        titulo="Total gastos del mes" 
+        [monto]="gastos" 
+        tipo="gasto" 
+        icono="trending-down-outline">
+      </app-dashboard-card>
+    </div>
+
+    <div class="dashboard-cont">
+      <app-dashboard-card 
+        titulo="Saldo actual" 
+        [monto]="balance" 
+        tipo="saldo" 
+        icono="wallet-outline">
+      </app-dashboard-card>
+    </div>
+  </div>
+
+  <!-- Mensaje cuando no hay gastos -->
+  <div *ngIf="gastos === 0" class="empty-state">
+    <ion-icon name="receipt-outline" size="large"></ion-icon>
+    <h3>No hay gastos registrados</h3>
+    <p>Agrega transacciones para ver el resumen por categorías</p>
+  </div>
+
+  <!-- Lista de categorías (solo visible si hay gastos) -->
+  <div *ngIf="gastos > 0">
+    <ion-list-header>
+      <ion-label>
+        <h2 class="section-subtitle">📊 Gastos por Categoría</h2>
+      </ion-label>
+    </ion-list-header>
+
+    <div class="category-list">
+      <app-progress-bar-category 
+        *ngFor="let item of categoriasResumen" 
+        [categoria]="item.categoria" 
+        [monto]="item.total"
+        [porcentaje]="item.porcentaje" 
+        [color]="item.categoria | categoryColor">
+      </app-progress-bar-category>
+    </div>
+    
+    <div class="total-gastos">
+      <ion-text color="medium">
+        <small>Total gastos: {{ gastos | currencyFormat }}</small>
+      </ion-text>
+    </div>
+  </div>
+
+
+
+</ion-content>

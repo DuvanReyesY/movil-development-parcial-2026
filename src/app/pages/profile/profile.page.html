@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <ion-icon name="person-circle" style="font-size: 100px; color: var(--ion-color-primary);"></ion-icon>
+    <h2>Información de Usuario</h2>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Correo Electrónico</ion-label>
+      <ion-text>{{ usuario?.email }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Teléfono</ion-label>
+      <ion-text>{{ usuario?.telefono || 'No registrado' }}</ion-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="danger" (click)="confirmarLogout()" class="ion-margin-top logout-button"
+    size="large">
+    <ion-icon slot="start" name="log-out-outline"></ion-icon>
+    Cerrar Sesión
+  </ion-button>
+  
+</ion-content>

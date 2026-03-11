@@ -1,0 +1,10 @@
+<div class="progress-container">
+  <div class="header">
+    <ion-label><strong>{{ categoria }}</strong></ion-label>
+    <ion-text color="medium">
+      <small>{{ monto | currencyFormat }} ({{ porcentaje * 100 | number:'1.0-0' }}%)</small>
+    </ion-text>
+  </div>
+  
+  <ion-progress-bar [value]="porcentaje" [color]="color"></ion-progress-bar>
+</div>

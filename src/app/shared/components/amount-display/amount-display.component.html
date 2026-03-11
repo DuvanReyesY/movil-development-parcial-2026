@@ -1,0 +1,7 @@
+<ion-text [color]="getColor()" [class]="tamano">
+  <span class="signo" *ngIf="tipo !== 'neutral'">
+    {{ tipo === 'gasto' ? '-' : '+' }}
+  </span>
+  
+  {{ monto | currencyFormat:'COP':'symbol':'1' }}
+</ion-text>

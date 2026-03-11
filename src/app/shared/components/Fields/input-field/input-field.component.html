@@ -1,0 +1,14 @@
+<ion-item [disabled]="disabled">
+  <ion-label position="stacked">{{ label }}</ion-label>
+  <ion-input 
+    [type]="type" 
+    [placeholder]="placeholder" 
+    [value]="value"
+    (ionInput)="onChange.emit($event.target.value)">
+  </ion-input>
+</ion-item>
+@if (error) {
+  <ion-note color="danger" class="ion-padding-start">
+    {{ error }}
+  </ion-note>
+}

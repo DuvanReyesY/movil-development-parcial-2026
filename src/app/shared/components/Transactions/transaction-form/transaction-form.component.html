@@ -1,0 +1,76 @@
+<ion-content>
+  <form [formGroup]="transactionForm" (ngSubmit)="save()">
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-segment formControlName="tipo" mode="md">
+                <ion-segment-button value="gasto">
+                  <ion-label>Gasto</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="ingreso">
+                  <ion-label>Ingreso</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label>Categoria</ion-label>
+                <ion-select formControlName="categoria" multiple="false"
+                  placeholder="Alimentación, Transporte, Ocio, etc...">
+                  <ion-select-option value="Alimentación">Alimentación</ion-select-option>
+                  <ion-select-option value="Transporte">Transporte</ion-select-option>
+                  <ion-select-option value="Vivienda">Vivienda</ion-select-option>
+                  <ion-select-option value="Salud">Salud</ion-select-option>
+                  <ion-select-option value="Ocio">Ocio</ion-select-option>
+                  <ion-select-option value="Salario">Salario</ion-select-option>
+                  <ion-select-option value="Otros">Otros</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label>
+                  <app-date-field label="Fecha" [value]="transactionForm.get('fecha')?.value"
+                    (onChange)="transactionForm.get('fecha')?.setValue($event)">
+                  </app-date-field>
+                </ion-label>
+
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label>Monto</ion-label>
+              <ion-input type="number" formControlName="monto" placeholder="$0.00"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label>Descripcion</ion-label>
+              <ion-textarea formControlName="descripcion"></ion-textarea>
+            </ion-col>
+          </ion-row>
+
+          <app-photo-selector [fotoActual]="foto" (onFotoSeleccionada)="guardarFoto($event)"
+            (onFotoEliminada)="eliminarFoto()">
+          </app-photo-selector>
+
+          <ion-button (click)="save()" color="primary" type="submit" expand="block" fill="clear" shape="round"
+            [disabled]="!transactionForm.valid">
+            Save
+          </ion-button>
+          <ion-button (click)="cancel()" color="shade" expand="block" fill="clear" shape="round">
+            Cancel
+          </ion-button>
+
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

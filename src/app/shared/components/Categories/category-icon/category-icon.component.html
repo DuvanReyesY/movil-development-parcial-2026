@@ -1,0 +1,12 @@
+<ion-avatar
+  [style.width]="size === 'small' ? '32px' : '40px'"
+  [style.height]="size === 'small' ? '32px' : '40px'"
+  [style.background]="'var(--ion-color-' + (categoria | categoryColor) + ')'">
+
+  <ion-icon
+    [name]="categoria | categoryIcon"
+    [style.fontSize]="size === 'small' ? '16px' : '20px'"
+    color="light">
+  </ion-icon>
+
+</ion-avatar>
