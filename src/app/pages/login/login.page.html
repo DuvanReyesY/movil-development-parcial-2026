@@ -1,22 +1,16 @@
-<!-- login.page.html -->
 <ion-content [fullscreen]="true" class="login-content">
   
-  <!-- Fondo con imagen -->
   <div class="background-image"></div>
   
-  <!-- Overlay oscuro para mejorar legibilidad -->
   <div class="overlay"></div>
-  
-  <!-- Contenido del login -->
+
   <div class="login-container">
     
-    <!-- Logo o título -->
     <div class="logo-container">
       <h1 class="app-title">✨MoneyWise✨</h1>
       <p class="app-subtitle">Tu asistente financiero personal</p>
     </div>
-    
-    <!-- Tarjeta de login -->
+
     <ion-card class="login-card">
       <ion-card-header>
         <ion-card-title>Bienvenido</ion-card-title>
@@ -25,8 +19,7 @@
 
       <ion-card-content>
         <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
-          
-          <!-- Campo Email -->
+
           <ion-item class="form-item" lines="full">
             <ion-icon name="mail-outline" slot="start"></ion-icon>
             <ion-input 
@@ -37,8 +30,7 @@
               formControlName="email">
             </ion-input>
           </ion-item>
-          
-          <!-- Mensajes de error para email -->
+
           @if (email?.invalid && (email?.dirty || email?.touched)){
             <div class="error-container">
               @if (email?.errors?.['required']){
@@ -54,9 +46,7 @@
                 </ion-text>
               }
             </div>
-          }
 
-          <!-- Campo Password -->
           <ion-item class="form-item" lines="full">
             <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
             <ion-input 
@@ -67,8 +57,7 @@
               formControlName="password">
             </ion-input>
           </ion-item>
-          
-          <!-- Mensajes de error para password -->
+
           @if (password?.invalid && (password?.dirty || password?.touched)){
             <div class="error-container">
               @if (password?.errors?.['required']){
@@ -86,7 +75,6 @@
             </div>
           }
 
-          <!-- Mensaje de error de login (credenciales incorrectas) -->
           @if (loginError){
             <div class="login-error-container">
               <ion-text color="danger" class="error-text">
@@ -96,7 +84,6 @@
             </div>
           }
 
-          <!-- Botones -->
           <ion-button 
             expand="block" 
             type="submit" 
@@ -118,13 +105,6 @@
         </form>
       </ion-card-content>
     </ion-card>
-    
-    <!-- Footer con derechos -->
-    <div class="footer">
-      <ion-text color="light">
-        <small>© 2026 MoneyWise. Todos los derechos reservados.</small>
-      </ion-text>
-    </div>
     
   </div>
   

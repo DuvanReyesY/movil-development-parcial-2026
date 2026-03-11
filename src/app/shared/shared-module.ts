@@ -26,9 +26,9 @@ import { PhotoGalleryModalComponent } from './components/Photo/photo-gallery-mod
 
 
 @NgModule({
-  declarations: [DashboardCardComponent,TransactionDetailsComponent, TransactionItemComponent, TransactionFormComponent, CurrencyFormatPipe,
-    DateFormatPipe, CategoryColorPipe, CategoryIconPipe, DateFieldComponent, PhotoSelectorComponent, FilterBarComponent, SearchByTextPipe,PhotoPreviewComponent,
-    FilterByCategoryPipe,FilterByTypePipe,AmountDisplayComponent,EmptyStateComponent,CategoryBadgeComponent,CategoryIconComponent,ProgressBarCategoryComponent,
+  declarations: [DashboardCardComponent, TransactionDetailsComponent, TransactionItemComponent, TransactionFormComponent, CurrencyFormatPipe,
+    DateFormatPipe, CategoryColorPipe, CategoryIconPipe, DateFieldComponent, PhotoSelectorComponent, FilterBarComponent, SearchByTextPipe, PhotoPreviewComponent,
+    FilterByCategoryPipe, FilterByTypePipe, AmountDisplayComponent, EmptyStateComponent, CategoryBadgeComponent, CategoryIconComponent, ProgressBarCategoryComponent,
     PhotoGalleryModalComponent
 
   ],
@@ -62,6 +62,6 @@ import { PhotoGalleryModalComponent } from './components/Photo/photo-gallery-mod
 
   ],
 
-  
+
 })
 export class SharedModule { }
