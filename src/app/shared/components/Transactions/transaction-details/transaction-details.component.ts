@@ -62,7 +62,7 @@ export class TransactionDetailsComponent implements OnInit {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            this.eliminarTransaccion();
+            this.onDelete();
           }
         },
         {
@@ -74,15 +74,6 @@ export class TransactionDetailsComponent implements OnInit {
     });
 
     await actionSheet.present();
-  }
-
-  async eliminarTransaccion() {
-    try {
-      await this.transaccionService.eliminar(this.transaccion.id);
-      this.modalCtrl.dismiss({ eliminada: true }, 'delete');
-    } catch (error) {
-      console.error('Error al eliminar:', error);
-    }
   }
 
   async onDelete() {
